@@ -1,12 +1,11 @@
 
-````markdown
-# 🧩 Registro de Correcciones del Chart Helm - EchoIP
+# Registro de Correcciones del Chart Helm - EchoIP
 
 Este documento describe los **problemas detectados** y las **correcciones aplicadas** en el chart Helm de **EchoIP**, con el objetivo de garantizar su correcta renderización y despliegue en Kubernetes.
 
 ---
 
-## 📂 Archivos Revisados
+## Archivos Revisados
 
 Se revisaron los siguientes archivos del chart:
 
@@ -18,9 +17,9 @@ Los demás archivos (`Chart.yaml`, `values.yaml`, `_helpers.tpl`) fueron validad
 
 ---
 
-## 1️⃣ deployment.yaml
+## deployment.yaml
 
-### 🔍 Problema
+### Problema
 Las directivas Helm:
 ```yaml
 {{- with .Values.deployment.annotations }}
@@ -30,7 +29,7 @@ Las directivas Helm:
 estaban **mal ubicadas**.
 Interrumpían el bloque `metadata:` antes de cerrarse correctamente, lo que causaba errores de análisis YAML al procesar la plantilla.
 
-### 🛠️ Solución
+### Solución
 
 Se movió el bloque `with` **dentro de `metadata:`** con la indentación adecuada para mantener la estructura jerárquica del documento.
 
